@@ -2,15 +2,13 @@ import React from "react";
 import { Text, View, StyleSheet, ScrollView } from "react-native";
 
 export default function BlockchainCourse({ route }) {
-  const { college } = route.params;
+  const { college } = route.params || {};
 
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Blockchain Course</Text>
-
       <Text style={styles.description}>Welcome to the Blockchain Course!</Text>
 
-      {/* Course Modules */}
       <View style={styles.modules}>
         <Text style={styles.moduleTitle}>Modules:</Text>
         <Text style={styles.module}>1. Introduction to Blockchain</Text>
@@ -20,7 +18,11 @@ export default function BlockchainCourse({ route }) {
         <Text style={styles.module}>5. Future of Blockchain Technology</Text>
       </View>
 
-      <Text>This is the {college} Blockchain Course.</Text>
+      {college && (
+        <Text style={styles.footerNote}>
+          This is the {college} Blockchain Course.
+        </Text>
+      )}
     </ScrollView>
   );
 }

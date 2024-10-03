@@ -2,10 +2,6 @@ import React from "react";
 import { Button, Text, View, StyleSheet } from "react-native";
 
 export default function HomeScreen({ navigation }) {
-  function handleNext() {
-    navigation.navigate("BlockchainCourse", { college: "GCIT" });
-  }
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -15,11 +11,6 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.body}>
         <Text style={styles.bodyText}>Discover our comprehensive courses.</Text>
       </View>
-      <Button
-        title="Go to Blockchain Course"
-        onPress={handleNext}
-        color="#841584"
-      />
     </View>
   );
 }
