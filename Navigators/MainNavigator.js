@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "../screens/Home";
-import BlockchainCourse from "../screens/BloackchainCourse";
+import Info from "../screens/Info";
+import SecondaryNavigator from "./SecondaryNavigator";
 
 export default function MainNavigator() {
   const Stack = createNativeStackNavigator();
@@ -8,11 +8,11 @@ export default function MainNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: true }}>
       <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        // options={{ headerShown: false }}
+        name="Info"
+        component={Info}
+        options={{ headerShown: false }}
       />
-      <Stack.Screen name="BlockchainCourse" component={BlockchainCourse} />
+      <Stack.Screen name="SecondaryNavigator" component={SecondaryNavigator} />
     </Stack.Navigator>
   );
 }
