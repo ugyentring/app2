@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
+import { setItemAsync } from "expo-secure-store";
 
 export default function HomeScreen({ navigation, route }) {
-  const { username, password } = route.params || {};b
+  const { username, password } = route.params || {};
 
   return (
     <View style={styles.container}>
