@@ -1,6 +1,5 @@
 import { View, Text, Button, StyleSheet, TextInput, Alert } from "react-native";
 import React, { useState } from "react";
-import * as SecureStore from "expo-secure-store";
 import { setItemAsync, deleteItemAsync } from "expo-secure-store";
 
 export default function Info({ navigation }) {
