@@ -1,9 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
-import { setItemAsync } from "expo-secure-store";
+import { getItemAsync } from "expo-secure-store";
 
 export default function HomeScreen({ navigation, route }) {
-  const { username, password } = route.params || {};
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    fetchUsernameAndPassword();
+  }, []);
+
+  async function fetchUsernameAndPassword() {
+    try {
+      const username = await getItemAsync("username");
+      const password = await getItemAsync("password");
+      setUsername(username);
+      setPassword(password);
+    } catch (error) {
+      Alert.alert("Error", error.message);
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -13,6 +29,8 @@ export default function HomeScreen({ navigation, route }) {
       </View>
       <View style={styles.body}>
         <Text style={styles.bodyText}>Discover our comprehensive courses.</Text>
+        <Text style={styles.bodyText}>{username}</Text>
+        <Text style={styles.bodyText}>{password}</Text>
       </View>
     </View>
   );

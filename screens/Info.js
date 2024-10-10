@@ -1,6 +1,7 @@
 import { View, Text, Button, StyleSheet, TextInput, Alert } from "react-native";
 import React, { useState } from "react";
 import * as SecureStore from "expo-secure-store";
+import { setItemAsync, deleteItemAsync } from "expo-secure-store";
 
 export default function Info({ navigation }) {
   const [username, setUsername] = useState("");
@@ -12,7 +13,6 @@ export default function Info({ navigation }) {
         {
           text: "OK",
           onPress: () => navigation.replace("SecondaryNavigator"),
-          style: "default",
         },
         {
           text: "Cancel",
@@ -20,7 +20,6 @@ export default function Info({ navigation }) {
             setPassword("");
             setUsername("");
           },
-          style: "cancel",
         },
       ]);
     });
@@ -28,8 +27,8 @@ export default function Info({ navigation }) {
 
   async function setUsernameAndPassword() {
     try {
-      await SecureStore.setItemAsync("username", username);
-      await SecureStore.setItemAsync("password", password);
+      await setItemAsync("username", username);
+      await setItemAsync("password", password);
     } catch (error) {
       Alert.alert("Error", error.message);
     }
@@ -41,6 +40,7 @@ export default function Info({ navigation }) {
       <TextInput
         placeholder="Enter your username"
         style={styles.inputText}
+        value={username}
         onChangeText={(text) => setUsername(text)}
       />
 
@@ -50,6 +50,7 @@ export default function Info({ navigation }) {
         style={styles.inputText}
         onChangeText={(text) => setPassword(text)}
         secureTextEntry={true}
+        value={password}
       />
       <Button title="Login" onPress={handleLogin} />
     </View>
